@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class H2_main {
 	public static void main(String[] args) {
-		int[] test1 = { 5, 3, 7, 3, 4, 7, 9 };
+		int[] test1 = { 5, 3, 7, 3, 4, 7, 8 };
 		int[] test2 = { 5, 3, 7, 3, 4, 7, 8 };
-		int test3 = 2;
-		int test4 = 3;
+		int test3 = 1;
+		int test4 = 6;
 		int[] result = change(test1, test2, test3, test4);
 		for (int i= 0; i<result.length; i++) {
-			System.out.print (result[i]+" ");
-		}
+			System.out.print (result[i]+" ");	
+		} 
 	}
 
 	public static int[] change(int[] a, int[] b, int start, int end) {
@@ -23,10 +23,7 @@ public class H2_main {
 			if (Arrays.compare(a, b) == 0) {
 				Arrays.sort(a);
 				int[] sortedA;
-				sortedA = new int[end - start];
-				for (int m = 0; m < sortedA.length; m++) {
-					sortedA[m] = a[start + m];
-				}
+				sortedA = Arrays.copyOfRange(a, start, end);
 				return sortedA;
 			} else {
 				int[] copyOfA;
