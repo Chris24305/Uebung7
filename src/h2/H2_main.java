@@ -1,55 +1,41 @@
 package h2;
 
+import java.util.Arrays;
+
 public class H2_main {
-	
 	public static void main(String[] args) {
-		int[] test1 = { 5, 3,7, 3, 4, 7, 9 };
-		int[] test2 = { 5, 3,7, 3, 4, 7, 9 };
+		int[] test1 = { 5, 3, 7, 3, 4, 7, 9 };
+		int[] test2 = { 5, 3, 7, 3, 4, 7, 8 };
 		int test3 = 2;
-		int test4 = 6;
+		int test4 = 3;
 		int[] result = change(test1, test2, test3, test4);
-		for (int i = 0; i < result.length; i++) {
-			System.out.print(result[i] + " ");
+		for (int i= 0; i<result.length; i++) {
+			System.out.print (result[i]+" ");
 		}
 	}
 
 	public static int[] change(int[] a, int[] b, int start, int end) {
-		if (end > start) { // Anfang end>start block
-			int[] copyOfa;
-			copyOfa = new int[a.length];
-			if (a.length != b.length) {
-				for (int i = 0; i < a.length; i++) {
-					copyOfa[i] = a[i];
+		if (end <= start) {
+			int[] empty;
+			empty = new int[a.length];
+			return empty;
+		} else {
+			if (Arrays.compare(a, b) == 0) {
+				Arrays.sort(a);
+				int[] sortedA;
+				sortedA = new int[end - start];
+				for (int m = 0; m < sortedA.length; m++) {
+					sortedA[m] = a[start + m];
 				}
-				return copyOfa;
+				return sortedA;
 			} else {
-				for (int m = 0; m < a.length; m++) {
-					if (a[m] != b[m]) {
-						for (int i = 0; i < a.length; i++) {
-							copyOfa[i] = a[i];
-						}
-						return copyOfa;
-					}
+				int[] copyOfA;
+				copyOfA = new int[a.length];
+				for (int n = 0; n < a.length; n++) {
+					copyOfA[n] = a[n];
 				}
+				return copyOfA;
 			}
-			// falls a und b identisch => a sortieren
-			for (int m = 0; m < a.length; m++) {
-				for (int n = m; n < a.length; n++) {
-					if (a[m] > a[n]) {
-						copyOfa[m] = a[n];
-						a[n] = a[m];
-						a[m] = copyOfa[m];
-						m = 0;
-					}
-				}
-			}		//copyOfa initialisieren
-			copyOfa = new int[end - start];
-			for (int m = 0; m < copyOfa.length; m++) {
-				copyOfa[m] = a[m + start];
-			}
-			return copyOfa;
-		} // Ende end>start block
-		return a;
-
+		}
 	}
 }
