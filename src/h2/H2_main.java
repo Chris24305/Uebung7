@@ -17,7 +17,7 @@ public class H2_main {
 	public static int[] change(int[] a, int[] b, int start, int end) {
 		if (end <= start) {
 			int[] empty;
-			empty = new int[a.length];
+			empty = new int[] {};
 			return empty;
 		} else {
 			if (Arrays.compare(a, b) == 0) {
